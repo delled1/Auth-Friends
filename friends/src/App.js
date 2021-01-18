@@ -5,6 +5,11 @@ import FriendsList from "./components/FriendsList"
 import {PrivateRoute} from "./components/PrivateRoute"
 
 function App() {
+
+  const logout = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <Router>
     <div className="App">
@@ -14,6 +19,9 @@ function App() {
         </li>
         <li>
           <Link to="/friendslist">Friends List</Link>
+        </li>
+        <li>
+          <Link onClick={logout}>Logout</Link>
         </li>
       </ul>
       <Switch>
