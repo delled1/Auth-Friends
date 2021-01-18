@@ -12,7 +12,7 @@ class Login extends React.Component {
     handleChange = e => {
         this.setState({
             userInfo: {
-                ...this.state,
+                ...this.state.userInfo,
                 [e.target.name]: e.target.value
             }
         })
