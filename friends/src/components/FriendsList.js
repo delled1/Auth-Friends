@@ -1,11 +1,18 @@
+import axios from "axios";
 import React from "react"
 import {axiosWithAuth} from "../utils/axiosWithAuth"
+import AddFriend from "./AddFriend"
 
 
 class FriendsList extends React.Component {
-    state = {
-        friendsList: []
+
+    constructor (props) {
+        super(props);
+        this.state = {
+            friendsList: []
+        }
     }
+
 
     componentDidMount() {
         this.getFriends();
@@ -14,7 +21,7 @@ class FriendsList extends React.Component {
     getFriends = () => {
         axiosWithAuth().get("/friends")
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             this.setState({
                 friendsList: res.data
             })
@@ -27,9 +34,10 @@ class FriendsList extends React.Component {
 
     formatFriends = () => {
         const formattedFriends = [];
-        console.log(this.state.friendsList);
+        // console.log(this.state.friendsList);
         this.state.friendsList.forEach((name, age, email) => {
             return formattedFriends.push({
+                id: name.id,
                 name: name.name,
                 age: name.age,
                 email: name.email
@@ -38,9 +46,10 @@ class FriendsList extends React.Component {
         return formattedFriends
     }
 
+
     render() {
         const friends = this.formatFriends();
-        console.log(friends)
+        // console.log(friends)
         return (
             <div>
             {friends.length > 0 && (
@@ -48,12 +57,11 @@ class FriendsList extends React.Component {
                 {friends.map(friend => (
                     <p>{friend.name} | {friend.age} | {friend.email}</p>
                 ))}
-
                 </div>
                 
             )}
-            
             </div>
+
         )
     }
 }

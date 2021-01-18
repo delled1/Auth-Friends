@@ -3,6 +3,7 @@ import './App.css';
 import Login from "./components/Login"
 import FriendsList from "./components/FriendsList"
 import {PrivateRoute} from "./components/PrivateRoute"
+import AddFriend from "./components/AddFriend"
 
 function App() {
 
@@ -23,12 +24,14 @@ function App() {
         <li>
           <Link onClick={logout}>Logout</Link>
         </li>
+        <Link to="/addfriend">Add Friend</Link>
       </ul>
       <Switch>
         <Route path="/login" component={Login}/>
         <PrivateRoute exact path="/friendslist">
           <FriendsList />
         </PrivateRoute>
+        <Route path="/addfriend" component={AddFriend} />
       </Switch>
 
     </div>
